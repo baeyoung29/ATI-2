@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ATI Subscription</title>
+	<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="../css/style.css">
+	<style>
+		.billingCard { max-width: 520px; margin: 8vh auto; padding: 30px; background: #fff; border-top: 5px solid #d0a933; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,.08); }
+		.billingCard h1 { color: #806719; margin-bottom: 8px; }
+		.billingCard p { line-height: 1.6; color: #555; }
+		.billingStatus { margin: 20px 0; padding: 14px; border-radius: 8px; background: #fff7df; color: #624d11; }
+	</style>
+</head>
+<body>
+	<main class="billingCard">
+		<h1>ATI Subscription</h1>
+		<p>Manage your ATI invoice subscription and payment method.</p>
+		<div id="billingStatus" class="billingStatus" role="status">Payment checkout is not connected yet.</div>
+		<p>To accept payments, configure a payment provider and a server endpoint that verifies subscription status before enabling paid access. See <strong>PAYMENTS.md</strong> in the ATI project folder.</p>
+		<p><a href="home.html">Back to invoices</a></p>
+	</main>
+	<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+	<script src="../js/firebase-config.js"></script>
+	<script src="../js/firebase-init.js"></script>
+	<script src="../js/auth.js"></script>
+	<script>requireAuth();</script>
+</body>
+</html>

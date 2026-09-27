@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ATI · Saved Invoices</title>
+	<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="../css/style.css">
+	<style>
+		.savedPage { max-width: 920px; margin: 36px auto; padding: 24px; }
+		.savedHeader { display:flex; justify-content:space-between; align-items:center; gap:16px; margin-bottom:20px; }
+		.savedHeader h1 { color:#806719; font-size:26px; }
+		.savedHeader a { color:#806719; font-weight:700; }
+		.savedHeader button,.savedActions button { background:#d0a933; color:#fff; border:0; border-radius:8px; cursor:pointer; font:600 13px 'Quicksand',sans-serif; }
+		.savedFilters { display:grid; grid-template-columns:1fr 220px; gap:10px; margin-bottom:18px; }
+		.savedFilters input,.savedFilters select { width:100%; padding:11px 12px; border:1px solid #ddd; border-radius:8px; font:inherit; }
+		.savedList { display:grid; gap:12px; }
+		.savedCard { background:#fff; border-left:4px solid #d0a933; border-radius:10px; padding:16px; box-shadow:0 4px 14px rgba(0,0,0,.06); }
+		.savedCard h2 { font-size:16px; margin-bottom:6px; }
+		.savedMeta { color:#666; font-size:13px; margin-bottom:12px; }
+		.savedActions { display:flex; gap:8px; }
+		.savedActions button { width:auto; padding:8px 14px; }
+		.savedActions .downloadButton { background:#555; }
+		.savedEmpty { background:#fff; padding:22px; border-radius:10px; color:#666; }
+		@media(max-width:600px) { .savedPage { margin:12px auto; padding:14px; } .savedFilters { grid-template-columns:1fr; } .savedHeader { align-items:flex-start; flex-direction:column; } }
+	</style>
+</head>
+<body>
+	<main class="savedPage">
+		<header class="savedHeader">
+			<div><h1>Saved Invoices</h1><div class="historyHint">Your account's cloud saved records</div></div>
+			<div class="userActions"><a href="home.html">Invoice Editor</a><button onclick="logout()">Log Out</button></div>
+		</header>
+		<div class="savedFilters">
+			<input id="savedSearch" type="search" placeholder="Search by invoice number or customer" aria-label="Search saved invoices">
+			<select id="savedType" aria-label="Filter invoice type">
+				<option value="all">All invoice types</option>
+				<option value="sales">Sales Tax Invoice</option>
+				<option value="purchase">Purchase Invoice</option>
+				<option value="proforma">Pro Forma Invoice</option>
+				<option value="credit">Credit Note</option>
+			</select>
+		</div>
+		<section id="savedInvoiceList" class="savedList" aria-live="polite"><p class="savedEmpty">Loading saved invoices…</p></section>
+	</main>
+	<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+	<script src="../js/firebase-config.js"></script>
+	<script src="../js/firebase-init.js"></script>
+	<script src="../js/auth.js"></script>
+	<script src="../js/saved-invoices.js"></script>
+	<script>requireAuth(loadSavedInvoices);</script>
+</body>
+</html>
